@@ -1,3 +1,3 @@
 # NetworkStatus
 
-Показывает статус подключения к сети
+Shows network connection status

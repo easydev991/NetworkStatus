@@ -9,9 +9,9 @@ public final class NetworkStatus: ObservableObject {
     @Published public private(set) var isConnected = false
 
     public init() {
-        monitor.pathUpdateHandler = { [weak self] path in
-            OperationQueue.main.addOperation {
-                self?.isConnected = path.status == .satisfied ? true : false
+        monitor.pathUpdateHandler = { path in
+            Task { @MainActor in
+                self.isConnected = path.status == .satisfied
             }
         }
         monitor.start(queue: queue)
